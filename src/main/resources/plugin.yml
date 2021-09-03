@@ -1,0 +1,5 @@
+name: NVCosmetic
+version: '${project.version}'
+main: ru.whitebeef.nvcosmetic.NVCosmetic
+api-version: 1.17
+authors: [ _WhiteBeef_, Xikki ]
