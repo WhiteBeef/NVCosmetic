@@ -1,5 +1,14 @@
 name: NVCosmetic
 version: '${project.version}'
 main: ru.whitebeef.nvcosmetic.NVCosmetic
-api-version: 1.17
-authors: [ _WhiteBeef_, Xikki ]
+api-version: 1.16
+authors: [ _WhiteBeef_ ]
+commands:
+  nvcosmetic:
+    usage: /<command>
+    description: Main furniture command
+    permission: nville.cosmetic
+permissions:
+  nville.cosmetic:
+    description: Use /nvcosmetic
+    default: op
