@@ -3,6 +3,7 @@ package ru.whitebeef.nvcosmetic.cosmetic;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class CosmeticManager {
 
@@ -23,7 +24,7 @@ public class CosmeticManager {
         return cosmetics.get(namespace);
     }
 
-    public void removeAllCosmeticPlayer() {
+    public void removeAllCosmeticPlayers() {
         cosmeticPlayers.forEach((player, cosmeticPlayer) -> cosmeticPlayer.getArmorStand().remove());
         cosmeticPlayers.clear();
     }
@@ -31,6 +32,7 @@ public class CosmeticManager {
     public void removeCosmeticPlayer(Player player) {
         cosmeticPlayers.get(player).getArmorStand().remove();
     }
+
 
 
 
