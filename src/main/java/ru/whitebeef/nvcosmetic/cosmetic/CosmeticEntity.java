@@ -1,20 +1,20 @@
 package ru.whitebeef.nvcosmetic.cosmetic;
 
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
-public class CosmeticPlayer implements Cosmetable {
+public class CosmeticEntity implements Cosmetable {
 
-    private Player player;
+    private LivingEntity entity;
     private Cosmetic cosmetic;
     private ItemStack item;
     private ArmorStand armorStand;
 
 
     //TODO: Добавить получение CosmeticPlayer из базы данных
-    public CosmeticPlayer(Player player) {
-        this.player = player;
+    public CosmeticEntity(LivingEntity entity) {
+        this.entity = entity;
     }
 
 

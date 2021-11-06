@@ -26,10 +26,12 @@ public final class NVCosmetic extends JavaPlugin implements Listener {
 
     public void reload() {
         instance = this;
+        saveDefaultConfig();
         Database.closeDatabase();
         database = Database.setupDatabase(this);
         cosmeticManager = new CosmeticManager();
     }
+
 
     @Override
     public void onDisable() {

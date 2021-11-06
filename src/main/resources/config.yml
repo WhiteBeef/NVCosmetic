@@ -1,0 +1,7 @@
+database:
+  use-mysql: false
+  host: 'HOST'
+  port: 'PORT'
+  database: 'DATABASE'
+  username: 'USERNAME'
+  password: 'PASSWORD'

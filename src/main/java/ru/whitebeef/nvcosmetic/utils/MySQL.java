@@ -67,7 +67,14 @@ public class MySQL extends Database {
 
     @Override
     public boolean hasCosmetic(Player player, String namespace) {
-        // TODO
+        String SQL = "SELECT * FROM nvcosmeticshop WHERE `uuid` = '" + player.getUniqueId() + "' AND `namespace` = '" + namespace + "';";
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL);
+             ResultSet rs = statement.executeQuery()) {
+            return rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return false;
     }
 
