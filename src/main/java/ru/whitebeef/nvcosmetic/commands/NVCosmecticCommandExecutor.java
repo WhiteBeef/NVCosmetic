@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import ru.whitebeef.nvcosmetic.NVCosmetic;
+import ru.whitebeef.nvcosmetic.utils.chat.Color;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,12 @@ public class NVCosmecticCommandExecutor implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length < 1) return true;
+        if (args[1].equalsIgnoreCase("reload")) {
+            NVCosmetic.getInstance().reload();
+            sender.sendMessage(Color.colorize("&aКонфиг перезагружен."));
+            return true;
+        }
 
 
         return true;
@@ -30,7 +37,6 @@ public class NVCosmecticCommandExecutor implements TabExecutor {
         if (args.length == 2) Bukkit.getOnlinePlayers().forEach(player -> retArray.add(player.getName()));
         if (args.length == 3) {
             if (args[0].equalsIgnoreCase("wear") || args[0].equalsIgnoreCase("add")) {
-                NVCosmetic.getCosmeticManager().getLoadedCosmetics().forEach(cosmetic -> retArray.add(cosmetic.getNamespace()));
             }
         }
         return retArray;

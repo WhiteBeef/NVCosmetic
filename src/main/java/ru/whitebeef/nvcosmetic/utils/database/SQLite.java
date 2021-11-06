@@ -1,4 +1,4 @@
-package ru.whitebeef.nvcosmetic.utils;
+package ru.whitebeef.nvcosmetic.utils.database;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -7,7 +7,6 @@ import ru.whitebeef.nvcosmetic.cosmetic.Cosmetic;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.sql.*;
 
 public class SQLite extends Database {

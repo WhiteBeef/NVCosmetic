@@ -1,4 +1,4 @@
-package ru.whitebeef.nvcosmetic.utils;
+package ru.whitebeef.nvcosmetic.utils.database;
 
 
 import org.bukkit.Bukkit;

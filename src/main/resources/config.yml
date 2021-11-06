@@ -5,3 +5,9 @@ database:
   database: 'DATABASE'
   username: 'USERNAME'
   password: 'PASSWORD'
+cosmetics:
+  guitar:
+    name: 'Гитара'
+    customModelData: 1000
+    position: BODY
+    material: structure_void

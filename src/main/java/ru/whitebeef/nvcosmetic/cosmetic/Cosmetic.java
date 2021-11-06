@@ -2,7 +2,7 @@ package ru.whitebeef.nvcosmetic.cosmetic;
 
 import org.bukkit.Material;
 
-public class Cosmetic {
+public class Cosmetic implements Cloneable {
 
     private String namespace;
     private String name;
@@ -11,9 +11,12 @@ public class Cosmetic {
     private Material material;
     private CosmeticPosition position;
 
-    public Cosmetic(String namespace, int customModelData) {
+    public Cosmetic(String namespace, String name, int customModelData, Material material, CosmeticPosition position) {
         this.namespace = namespace;
+        this.name = name;
         this.customModelData = customModelData;
+        this.material = material;
+        this.position = position;
     }
 
     public int getColor() {

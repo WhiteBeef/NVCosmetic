@@ -26,7 +26,6 @@ public class CosmeticHandler implements Listener {
                 .spawnEntity(entity.getLocation(), EntityType.ARMOR_STAND);
         armorStand.setInvisible(true);
         armorStand.setInvulnerable(true);
-        //armorStand.getLocation().setYaw(0);
         return armorStand;
     }
 }
