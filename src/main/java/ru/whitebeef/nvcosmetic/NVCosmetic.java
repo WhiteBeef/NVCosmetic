@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.whitebeef.nvcosmetic.commands.NVCosmecticCommandExecutor;
-import ru.whitebeef.nvcosmetic.cosmetic.CosmeticHandler;
-import ru.whitebeef.nvcosmetic.cosmetic.CosmeticManager;
+import ru.whitebeef.nvcosmetic.handlers.CosmeticHandler;
+import ru.whitebeef.nvcosmetic.managers.CosmeticManager;
 
 public final class NVCosmetic extends JavaPlugin implements Listener {
 

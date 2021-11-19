@@ -1,4 +1,4 @@
-package ru.whitebeef.nvcosmetic.cosmetic;
+package ru.whitebeef.nvcosmetic.handlers;
 
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;

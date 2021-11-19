@@ -1,9 +1,12 @@
-package ru.whitebeef.nvcosmetic.cosmetic;
+package ru.whitebeef.nvcosmetic.managers;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import ru.whitebeef.nvcosmetic.NVCosmetic;
+import ru.whitebeef.nvcosmetic.cosmetic.Cosmetic;
+import ru.whitebeef.nvcosmetic.cosmetic.CosmeticEntity;
+import ru.whitebeef.nvcosmetic.cosmetic.CosmeticPosition;
 import ru.whitebeef.nvcosmetic.utils.database.Database;
 
 import java.util.Collection;
