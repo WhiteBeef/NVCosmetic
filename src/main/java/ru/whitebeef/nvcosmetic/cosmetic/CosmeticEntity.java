@@ -3,24 +3,19 @@ package ru.whitebeef.nvcosmetic.cosmetic;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import ru.whitebeef.nvcosmetic.NVCosmetic;
+import ru.whitebeef.nvcosmetic.managers.CosmeticManager;
 
 public class CosmeticEntity implements Cosmetable {
 
-    private LivingEntity entity;
+    private final LivingEntity entity;
     private Cosmetic cosmetic;
     private ItemStack item;
     private ArmorStand armorStand;
 
-
-    //TODO: Добавить получение CosmeticPlayer из базы данных
     public CosmeticEntity(LivingEntity entity) {
+        NVCosmetic.getCosmeticManager().addCosmeticEntity(entity, this);
         this.entity = entity;
-    }
-
-
-    @Override
-    public void setCosmetic(Cosmetic cosmetic) {
-        this.cosmetic = cosmetic;
     }
 
     @Override
@@ -31,6 +26,19 @@ public class CosmeticEntity implements Cosmetable {
     @Override
     public ArmorStand getArmorStand() {
         return armorStand;
+    }
+
+    //TODO: сделать одевание косметики на энтити
+    @Override
+    public void wearCosmetic(Cosmetic cosmetic) {
+        this.cosmetic = cosmetic;
+
+    }
+
+    // TODO: получение косметики из базы
+    @Override
+    public void wearCosmetic() {
+        wearCosmetic(NVCosmetic.getDatabase().getCosmetic(entity));
     }
 
     @Override

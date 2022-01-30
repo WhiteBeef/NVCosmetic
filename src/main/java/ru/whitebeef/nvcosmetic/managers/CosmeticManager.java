@@ -2,7 +2,11 @@ package ru.whitebeef.nvcosmetic.managers;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.whitebeef.nvcosmetic.NVCosmetic;
 import ru.whitebeef.nvcosmetic.cosmetic.Cosmetic;
 import ru.whitebeef.nvcosmetic.cosmetic.CosmeticEntity;
@@ -17,7 +21,7 @@ public class CosmeticManager {
     private static Database database;
     // namespace - Cosmetic
     private HashMap<String, Cosmetic> cosmetics = new HashMap<>();
-    private HashMap<Player, CosmeticEntity> cosmeticPlayers = new HashMap<>();
+    private HashMap<LivingEntity, CosmeticEntity> cosmeticEntities = new HashMap<>();
 
     public CosmeticManager() {
         Database.closeDatabase();
@@ -27,7 +31,7 @@ public class CosmeticManager {
 
     private void registerCosmetics() {
         FileConfiguration config = NVCosmetic.getInstance().getConfig();
-        for (String namespace : config.getConfigurationSection("cosmetics").getKeys(false)) {
+        for(String namespace : config.getConfigurationSection("cosmetics").getKeys(false)) {
             Cosmetic cosmetic = new Cosmetic(
                     namespace,
                     config.getString("cosmetics." + namespace + ".name"),
@@ -39,7 +43,6 @@ public class CosmeticManager {
         }
     }
 
-
     public Cosmetic getCosmetic(String namespace) {
         return cosmetics.get(namespace);
     }
@@ -48,14 +51,22 @@ public class CosmeticManager {
         return cosmetics.values();
     }
 
-    public void removeAllCosmeticPlayers() {
-        cosmeticPlayers.forEach((player, cosmeticPlayer) -> cosmeticPlayer.getArmorStand().remove());
-        cosmeticPlayers.clear();
+    @Nullable
+    public CosmeticEntity getCosmeticEntity(@NotNull LivingEntity entity) {
+        return cosmeticEntities.get(entity);
     }
 
-    public void removeCosmeticPlayer(Player player) {
-        cosmeticPlayers.get(player).getArmorStand().remove();
+    public void removeAllCosmeticEntities() {
+        cosmeticEntities.forEach((player, cosmeticPlayer) -> cosmeticPlayer.getArmorStand().remove());
+        cosmeticEntities.clear();
     }
 
+    public void removeCosmeticEntity(@NotNull CosmeticEntity entity) {
+        entity.getArmorStand().remove();
+    }
+
+    public void addCosmeticEntity(LivingEntity livingEntity, CosmeticEntity entity) {
+        cosmeticEntities.put(livingEntity, entity);
+    }
 
 }

@@ -7,10 +7,11 @@ public interface Cosmetable {
 
     Cosmetic getCosmetic();
 
-    void setCosmetic(Cosmetic cosmetic);
-
     ItemStack getItem();
 
     ArmorStand getArmorStand();
 
+    void wearCosmetic();
+
+    void wearCosmetic(Cosmetic cosmetic);
 }

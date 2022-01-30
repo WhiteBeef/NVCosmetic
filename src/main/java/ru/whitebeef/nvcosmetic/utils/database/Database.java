@@ -1,6 +1,7 @@
 package ru.whitebeef.nvcosmetic.utils.database;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import ru.whitebeef.nvcosmetic.cosmetic.Cosmetic;
@@ -18,12 +19,12 @@ public abstract class Database {
     public static final String SHOP_TABLE_NAME = "NVCosmeticShop";
 
     public static Database setupDatabase(Plugin plugin) {
-        if (plugin.getConfig().getBoolean("database.use-mysql")) {
+        if(plugin.getConfig().getBoolean("database.use-mysql")) {
             try {
                 database = new MySQL(plugin.getConfig());
                 setupTables();
                 return database;
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 Bukkit.getLogger().info("Couldn't connect to the database! Using SQLite instead.");
             }
         }
@@ -33,7 +34,7 @@ public abstract class Database {
     }
 
     public static void closeDatabase() {
-        if (database != null)
+        if(database != null)
             database.close();
     }
 
@@ -42,19 +43,21 @@ public abstract class Database {
             "CREATE TABLE IF NOT EXISTS " + SHOP_TABLE_NAME + "(`uuid` varchar(64), `namespace` varchar(64) );");
 
     public static void setupTables() {
-        for (String query : TABLES)
-            try (Connection con = openConnection();
-                 PreparedStatement ps = con.prepareStatement(query)) {
+        for(String query : TABLES)
+            try(Connection con = openConnection();
+                PreparedStatement ps = con.prepareStatement(query)) {
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            } catch(SQLException e) {
                 e.printStackTrace();
             }
     }
 
 
-    public abstract boolean hasCosmetic(Player player, String namespace);
+    public abstract boolean hasCosmetic(LivingEntity entity, String namespace);
 
-    public abstract void wearCosmetic(Player player, Cosmetic cosmetic);
+    public abstract void wearCosmetic(LivingEntity entity, Cosmetic cosmetic);
+
+    public abstract Cosmetic getCosmetic(LivingEntity entity);
 
     public static Connection openConnection() throws SQLException {
         return database.getConnection();
