@@ -31,7 +31,7 @@ public class CosmeticManager {
 
     private void registerCosmetics() {
         FileConfiguration config = NVCosmetic.getInstance().getConfig();
-        for(String namespace : config.getConfigurationSection("cosmetics").getKeys(false)) {
+        for (String namespace : config.getConfigurationSection("cosmetics").getKeys(false)) {
             Cosmetic cosmetic = new Cosmetic(
                     namespace,
                     config.getString("cosmetics." + namespace + ".name"),
@@ -51,22 +51,23 @@ public class CosmeticManager {
         return cosmetics.values();
     }
 
-    @Nullable
-    public CosmeticEntity getCosmeticEntity(@NotNull LivingEntity entity) {
-        return cosmeticEntities.get(entity);
-    }
-
     public void removeAllCosmeticEntities() {
         cosmeticEntities.forEach((player, cosmeticPlayer) -> cosmeticPlayer.getArmorStand().remove());
         cosmeticEntities.clear();
     }
 
-    public void removeCosmeticEntity(@NotNull CosmeticEntity entity) {
+    public void removeCosmeticEntity(CosmeticEntity entity) {
+        if (entity == null) return;
         entity.getArmorStand().remove();
     }
 
     public void addCosmeticEntity(LivingEntity livingEntity, CosmeticEntity entity) {
         cosmeticEntities.put(livingEntity, entity);
+    }
+
+    @Nullable
+    public static CosmeticEntity getCosmeticEntity(@NotNull LivingEntity entity) {
+        return NVCosmetic.getCosmeticManager().cosmeticEntities.get(entity);
     }
 
 }

@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import ru.whitebeef.nvcosmetic.NVCosmetic;
 import ru.whitebeef.nvcosmetic.cosmetic.CosmeticEntity;
+import ru.whitebeef.nvcosmetic.managers.CosmeticManager;
 
 public class CosmeticHandler implements Listener {
 
@@ -16,7 +17,8 @@ public class CosmeticHandler implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        NVCosmetic.getCosmeticManager().
+        CosmeticEntity cosmeticPlayer = NVCosmetic.getCosmeticManager().getCosmeticEntity(event.getPlayer());
+        NVCosmetic.getCosmeticManager().removeCosmeticEntity(cosmeticPlayer);
     }
 
 
