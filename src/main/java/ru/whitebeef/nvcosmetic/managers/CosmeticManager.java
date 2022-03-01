@@ -2,6 +2,7 @@ package ru.whitebeef.nvcosmetic.managers;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -18,6 +19,11 @@ import java.util.HashMap;
 
 public class CosmeticManager {
 
+    @Nullable
+    public static CosmeticEntity getCosmeticEntity(@NotNull LivingEntity entity) {
+        return NVCosmetic.getCosmeticManager().cosmeticEntities.get(entity);
+    }
+
     private static Database database;
     // namespace - Cosmetic
     private HashMap<String, Cosmetic> cosmetics = new HashMap<>();
@@ -27,6 +33,7 @@ public class CosmeticManager {
         Database.closeDatabase();
         database = Database.setupDatabase(NVCosmetic.getInstance());
         registerCosmetics();
+        updateWearingCosmetics();
     }
 
     private void registerCosmetics() {
@@ -65,9 +72,16 @@ public class CosmeticManager {
         cosmeticEntities.put(livingEntity, entity);
     }
 
-    @Nullable
-    public static CosmeticEntity getCosmeticEntity(@NotNull LivingEntity entity) {
-        return NVCosmetic.getCosmeticManager().cosmeticEntities.get(entity);
+
+    private void updateWearingCosmetics() {
+        for (CosmeticEntity entity : cosmeticEntities.values()) {
+            ArmorStand as = entity.getArmorStand();
+            if (as == null) {
+                entity.wearCosmetic(entity.getCosmetic());
+                return;
+            }
+            entity.getEntity().addPassenger(as);
+        }
     }
 
 }

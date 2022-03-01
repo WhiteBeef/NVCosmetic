@@ -34,4 +34,16 @@ public class Cosmetic implements Cloneable {
     public int getCustomModelData() {
         return customModelData;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public CosmeticPosition getPosition() {
+        return position;
+    }
 }
